@@ -31,26 +31,22 @@ No vendemos "IA genérica". Entregamos herramientas que resuelven un problema co
 **Qué es:** Chatbot entrenado con información del negocio (precios, horarios, FAQs, catálogo).  
 **Canal:** WhatsApp, web, Instagram DM.  
 **Para quién:** Comercios, clínicas, estudios, gimnasios.  
-**Precio sugerido:** USD 800–1.500 setup + USD 150/mes mantenimiento.  
 **Tiempo de entrega:** 2–3 semanas.
 
 ### 3.2 Automatización de Procesos
 **Qué es:** Flujos automáticos que eliminan tareas manuales repetitivas (cotizaciones, recordatorios, seguimiento de clientes, reportes).  
 **Herramientas:** n8n, Make, Zapier + Claude/GPT API.  
 **Para quién:** Inmobiliarias, agencias, empresas de logística.  
-**Precio sugerido:** USD 1.000–2.500 setup + USD 200/mes.  
 **Tiempo de entrega:** 3–4 semanas.
 
 ### 3.3 IA sobre Documentos (RAG)
 **Qué es:** El cliente sube sus documentos (manuales, contratos, catálogos) y obtiene un asistente que los responde con precisión.  
 **Para quién:** Estudios jurídicos, contables, empresas con mucha documentación interna.  
-**Precio sugerido:** USD 2.000–4.000 setup + USD 300/mes.  
 **Tiempo de entrega:** 4–6 semanas.
 
 ### 3.4 Consultoría IA Express
 **Qué es:** 3 horas de análisis + informe con qué automatizar primero y cuánto ahorraría.  
 **Para quién:** Empresas que quieren saber por dónde empezar antes de invertir.  
-**Precio sugerido:** USD 300 (se descuenta si luego contratan un proyecto).  
 **Objetivo:** Generador de leads calificados para los servicios anteriores.
 
 ---
@@ -81,7 +77,7 @@ No vendemos "IA genérica". Entregamos herramientas que resuelven un problema co
 - Armar un deck de una página (problema → solución → resultado del caso real → precio → próximo paso).
 - Presentar a 20 contactos de segundo grado (amigos de amigos con negocio, grupos de emprendedores, WhatsApp de cámaras locales).
 - **Meta:** 2–3 contratos firmados.
-- Precio especial "clientes fundadores": 30% descuento a cambio de testimonio y referido.
+- Condiciones especiales "clientes fundadores": a cambio de testimonio y referido.
 
 ### Fase 3 — Mes 3: Primeros leads fríos
 
