@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impulso IA — Plan de Negocio</title>
+  <style>
+    :root {
+      --bg: #0f0f14;
+      --surface: #1a1a24;
+      --surface2: #22222f;
+      --border: #2e2e3e;
+      --accent: #7c6df0;
+      --accent2: #5eead4;
+      --text: #e2e2f0;
+      --text-muted: #8888a8;
+      --green: #4ade80;
+      --yellow: #fbbf24;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 60px 24px 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(124,109,240,.15) 0%, transparent 70%);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(124,109,240,.2);
+      border: 1px solid rgba(124,109,240,.4);
+      color: #b4aaff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 0%, #b4aaff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+    header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+    .meta-chips {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 5px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .chip strong { color: var(--text); }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* ── SECTION CARD ── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+    }
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .icon-purple { background: rgba(124,109,240,.15); }
+    .icon-teal   { background: rgba(94,234,212,.12); }
+    .icon-green  { background: rgba(74,222,128,.12); }
+    .icon-yellow { background: rgba(251,191,36,.12); }
+    .icon-blue   { background: rgba(96,165,250,.12); }
+
+    .section-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .section-num {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-left: auto;
+      font-weight: 500;
+    }
+    .section-body { padding: 24px; }
+
+    /* ── VALOR ── */
+    .value-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 600px) { .value-grid { grid-template-columns: 1fr; } }
+    .value-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .value-card .pain {
+      font-size: 12px;
+      color: #f87171;
+      margin-bottom: 6px;
+    }
+    .value-card .solution {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── SERVICIOS ── */
+    .service-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .service-card:last-child { margin-bottom: 0; }
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .service-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .service-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 99px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .tag-purple { background: rgba(124,109,240,.2); color: #b4aaff; border: 1px solid rgba(124,109,240,.3); }
+    .tag-teal   { background: rgba(94,234,212,.15); color: #5eead4; border: 1px solid rgba(94,234,212,.25); }
+    .tag-green  { background: rgba(74,222,128,.15); color: #4ade80; border: 1px solid rgba(74,222,128,.25); }
+    .tag-yellow { background: rgba(251,191,36,.15); color: #fbbf24; border: 1px solid rgba(251,191,36,.25); }
+
+    .service-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .service-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .meta-pill {
+      font-size: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 4px 10px;
+      color: var(--text-muted);
+    }
+    .meta-pill strong { color: var(--text); }
+
+    /* ── FASES ── */
+    .phase {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .phase:last-child { margin-bottom: 0; }
+    .phase-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .phase-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .dot-1 { background: rgba(124,109,240,.25); color: #b4aaff; border: 2px solid rgba(124,109,240,.5); }
+    .dot-2 { background: rgba(94,234,212,.15); color: #5eead4; border: 2px solid rgba(94,234,212,.4); }
+    .dot-3 { background: rgba(74,222,128,.15); color: #4ade80; border: 2px solid rgba(74,222,128,.4); }
+    .phase-connector {
+      width: 2px;
+      flex: 1;
+      background: var(--border);
+      margin: 4px 0;
+      min-height: 20px;
+    }
+    .phase-content { padding-top: 4px; flex: 1; }
+    .phase-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .phase-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .phase-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .phase-items li {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      padding-left: 16px;
+      position: relative;
+    }
+    .phase-items li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    .phase-goal {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* ── TABLA MÉTRICAS ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    thead th {
+      text-align: left;
+      padding: 10px 14px;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: var(--surface2); }
+    .val-green { color: var(--green); font-weight: 600; }
+    .val-yellow { color: var(--yellow); font-weight: 600; }
+
+    /* ── STACK ── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .stack-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .stack-cat {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
+    }
+    .stack-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── CHECKLIST ── */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .checklist li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    /* ── METAS ── */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) { .goals-grid { grid-template-columns: 1fr; } }
+    .goal-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .goal-period {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .goal-stat {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .stat-purple { color: #b4aaff; }
+    .stat-teal { color: #5eead4; }
+    .goal-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ── PRÓXIMOS PASOS ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: rgba(124,109,240,.2);
+      border: 1px solid rgba(124,109,240,.4);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #b4aaff;
+      flex-shrink: 0;
+    }
+    .step-text { font-size: 14px; color: var(--text); }
+    .step-when {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── ROLES ── */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 600px) { .roles-grid { grid-template-columns: 1fr; } }
+    .role-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+    .role-emoji { font-size: 28px; margin-bottom: 8px; }
+    .role-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .role-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ HEADER -->
+<header>
+  <div class="badge">Plan de Negocio v0.1 — Mayo 2026</div>
+  <h1>Impulso IA</h1>
+  <p>Inteligencia Artificial para Pymes</p>
+  <div class="meta-chips">
+    <div class="chip"><strong>Equipo:</strong> 3 fundadores</div>
+    <div class="chip"><strong>Mercado:</strong> Argentina → LATAM</div>
+    <div class="chip"><strong>Stack:</strong> Claude + Gemini API</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ 1. PROPUESTA DE VALOR -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-purple">💡</div>
+      <h2>Propuesta de Valor</h2>
+      <span class="section-num">01</span>
+    </div>
+    <div class="section-body">
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="pain">❝ No sé por dónde empezar con IA ❞</div>
+          <div class="solution">Diagnóstico gratuito + hoja de ruta clara</div>
+        </div>
+        <div class="value-card">
+          <div class="pain">❝ No tengo presupuesto para un equipo tech ❞</div>
+          <div class="solution">Soluciones de precio fijo, sin sorpresas</div>
+        </div>
+        <div class="value-card">
+          <div class="pain">❝ Probé herramientas y no funcionaron ❞</div>
+          <div class="solution">Implementación a medida + acompañamiento</div>
+        </div>
+        <div class="value-card">
+          <div class="pain">❝ No sé si esto dura en el tiempo ❞</div>
+          <div class="solution">Soporte continuo mensual con SLA claro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 2. SERVICIOS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-teal">🛠</div>
+      <h2>Servicios</h2>
+      <span class="section-num">02</span>
+    </div>
+    <div class="section-body">
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Agente de Atención al Cliente</div>
+          <div class="service-tag tag-purple">Starter</div>
+        </div>
+        <div class="service-desc">Chatbot entrenado con info del negocio: precios, horarios, FAQs, catálogo. Integra WhatsApp, web e Instagram DM.</div>
+        <div class="service-meta">
+          <div class="meta-pill">💰 <strong>USD 800–1.500</strong> setup</div>
+          <div class="meta-pill">📅 <strong>USD 150/mes</strong></div>
+          <div class="meta-pill">⏱ 2–3 semanas</div>
+          <div class="meta-pill">🎯 Comercios, clínicas, gimnasios</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Automatización de Procesos</div>
+          <div class="service-tag tag-teal">Intermedio</div>
+        </div>
+        <div class="service-desc">Flujos automáticos que eliminan trabajo manual: cotizaciones, recordatorios, seguimiento de clientes, reportes. Con n8n / Make + Claude API.</div>
+        <div class="service-meta">
+          <div class="meta-pill">💰 <strong>USD 1.000–2.500</strong> setup</div>
+          <div class="meta-pill">📅 <strong>USD 200/mes</strong></div>
+          <div class="meta-pill">⏱ 3–4 semanas</div>
+          <div class="meta-pill">🎯 Inmobiliarias, agencias, logística</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">IA sobre Documentos (RAG)</div>
+          <div class="service-tag tag-green">Avanzado</div>
+        </div>
+        <div class="service-desc">El cliente sube sus documentos (contratos, manuales, catálogos) y obtiene un asistente que los responde con precisión. Sin alucinaciones.</div>
+        <div class="service-meta">
+          <div class="meta-pill">💰 <strong>USD 2.000–4.000</strong> setup</div>
+          <div class="meta-pill">📅 <strong>USD 300/mes</strong></div>
+          <div class="meta-pill">⏱ 4–6 semanas</div>
+          <div class="meta-pill">🎯 Estudios jurídicos, contables</div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-top">
+          <div class="service-name">Consultoría IA Express</div>
+          <div class="service-tag tag-yellow">Lead magnet</div>
+        </div>
+        <div class="service-desc">3 horas de análisis + informe de qué automatizar primero y cuánto ahorraría. Se descuenta del proyecto si contratan.</div>
+        <div class="service-meta">
+          <div class="meta-pill">💰 <strong>USD 300</strong> fijo</div>
+          <div class="meta-pill">⏱ 1 semana</div>
+          <div class="meta-pill">🎯 Entrada de leads calificados</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ 3. ESTRATEGIA 90 DÍAS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-green">🗓</div>
+      <h2>Estrategia Primeros 90 Días</h2>
+      <span class="section-num">03</span>
+    </div>
+    <div class="section-body">
+
+      <div class="phase">
+        <div class="phase-line">
+          <div class="phase-dot dot-1">1</div>
+          <div class="phase-connector"></div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-label">Mes 1</div>
+          <div class="phase-title">Validar con gente conocida</div>
+          <ul class="phase-items">
+            <li>Cada integrante lista 10 conocidos con pyme propia</li>
+            <li>Elegir 3 pilotos: servicio a costo o gratis a cambio de feedback</li>
+            <li>Documentar resultado: tiempo ahorrado, problema resuelto</li>
+          </ul>
+          <div class="phase-goal">🎯 Meta: 1 caso de éxito documentado con testimonio</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-line">
+          <div class="phase-dot dot-2">2</div>
+          <div class="phase-connector"></div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-label">Mes 2</div>
+          <div class="phase-title">Primeros clientes pagos — red cercana</div>
+          <ul class="phase-items">
+            <li>Deck de una página con caso real incluido</li>
+            <li>Presentar a 20 contactos de segundo grado</li>
+            <li>Precio especial "cliente fundador": 30% off + referido</li>
+          </ul>
+          <div class="phase-goal">🎯 Meta: 2–3 contratos firmados</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-line">
+          <div class="phase-dot dot-3">3</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-label">Mes 3</div>
+          <div class="phase-title">Primeros leads fríos</div>
+          <ul class="phase-items">
+            <li>LinkedIn: 2 posts/semana por fundador (casos reales, antes/después)</li>
+            <li>Perfil de empresa con contenido educativo</li>
+            <li>Meta Ads: USD 200–300 segmentado a dueños de negocio en Argentina</li>
+          </ul>
+          <div class="phase-goal">🎯 Meta: 5+ leads nuevos, 2+ clientes nuevos</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ 4. METAS FINANCIERAS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-yellow">📈</div>
+      <h2>Metas Financieras</h2>
+      <span class="section-num">04</span>
+    </div>
+    <div class="section-body">
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="goal-period">A 6 meses</div>
+          <div class="goal-stat stat-purple">8</div>
+          <div class="goal-desc">clientes activos</div>
+          <br>
+          <div class="goal-stat stat-purple">USD 1.600</div>
+          <div class="goal-desc">MRR mensual recurrente</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-period">A 12 meses</div>
+          <div class="goal-stat stat-teal">20</div>
+          <div class="goal-desc">clientes activos</div>
+          <br>
+          <div class="goal-stat stat-teal">USD 4.000</div>
+          <div class="goal-desc">MRR mensual recurrente</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 5. MÉTRICAS BI-SEMANALES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-blue">📊</div>
+      <h2>Métricas a Revisar cada 2 Semanas</h2>
+      <span class="section-num">05</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Métrica</th>
+            <th>Meta Mes 1</th>
+            <th>Meta Mes 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Reuniones de demo</td>
+            <td class="val-yellow">5</td>
+            <td class="val-green">15</td>
+          </tr>
+          <tr>
+            <td>Propuestas enviadas</td>
+            <td class="val-yellow">2</td>
+            <td class="val-green">8</td>
+          </tr>
+          <tr>
+            <td>Clientes cerrados</td>
+            <td class="val-yellow">1</td>
+            <td class="val-green">5</td>
+          </tr>
+          <tr>
+            <td>MRR</td>
+            <td class="val-yellow">USD 0</td>
+            <td class="val-green">USD 800</td>
+          </tr>
+          <tr>
+            <td>Casos de éxito publicados</td>
+            <td class="val-yellow">1</td>
+            <td class="val-green">3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ 6. STACK TECNOLÓGICO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-purple">⚙️</div>
+      <h2>Stack Tecnológico</h2>
+      <span class="section-num">06</span>
+    </div>
+    <div class="section-body">
+      <div class="stack-grid">
+        <div class="stack-item">
+          <div class="stack-cat">LLM / Agentes</div>
+          <div class="stack-name">Claude API + Gemini API</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-cat">Automatización</div>
+          <div class="stack-name">n8n · Make</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-cat">Base vectorial</div>
+          <div class="stack-name">Supabase pgvector</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-cat">Frontend</div>
+          <div class="stack-name">Next.js / Vercel</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-cat">WhatsApp</div>
+          <div class="stack-name">Evolution API · Twilio</div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-cat">CRM</div>
+          <div class="stack-name">Notion · HubSpot free</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 7. ROLES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-teal">👥</div>
+      <h2>Roles del Equipo</h2>
+      <span class="section-num">07</span>
+    </div>
+    <div class="section-body">
+      <div class="roles-grid">
+        <div class="role-card">
+          <div class="role-emoji">🤝</div>
+          <div class="role-name">Ventas & Cuentas</div>
+          <div class="role-desc">Contacto con clientes, demos, contratos y seguimiento post-cierre</div>
+        </div>
+        <div class="role-card">
+          <div class="role-emoji">🧠</div>
+          <div class="role-name">Técnico Líder</div>
+          <div class="role-desc">Arquitectura de soluciones, implementación core, decisiones de stack</div>
+        </div>
+        <div class="role-card">
+          <div class="role-emoji">🔧</div>
+          <div class="role-name">Técnico / Ops</div>
+          <div class="role-desc">Deployment, integraciones, soporte y mantenimiento post-entrega</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 8. CHECKLIST PRE-PRIMER CLIENTE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-green">✅</div>
+      <h2>Checklist antes del Primer Cliente</h2>
+      <span class="section-num">08</span>
+    </div>
+    <div class="section-body">
+      <ul class="checklist">
+        <li><div class="checkbox"></div>Nombre legal / monotributo o facturación definida</li>
+        <li><div class="checkbox"></div>Cuenta de empresa en LinkedIn creada</li>
+        <li><div class="checkbox"></div>Landing page básica publicada (impulso-ia)</li>
+        <li><div class="checkbox"></div>Demo funcional del chatbot para mostrar en reuniones</li>
+        <li><div class="checkbox"></div>Portafolio con el primer caso real documentado</li>
+        <li><div class="checkbox"></div>Contrato tipo (1 página: alcance, precio, pago, código)</li>
+        <li><div class="checkbox"></div>Cuentas API activas: Claude / Gemini / Twilio</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ 9. PRÓXIMOS PASOS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon icon-yellow">🚀</div>
+      <h2>Próximos Pasos Inmediatos</h2>
+      <span class="section-num">09</span>
+    </div>
+    <div class="section-body">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Cada integrante arma su lista de 10 pymes conocidas</div>
+          <div class="step-when">Esta semana</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">Definir quién toma qué rol (ventas / técnico / ops)</div>
+          <div class="step-when">Esta semana</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">Construir el primer demo funcional — chatbot de ejemplo</div>
+          <div class="step-when">Próxima semana</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">Elegir el primer cliente piloto y acordar los términos</div>
+          <div class="step-when">Próxima semana</div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-text">Completar el caso piloto y documentar el resultado</div>
+          <div class="step-when">Mes 1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Impulso IA · Documento vivo — actualizar a medida que se validan supuestos con clientes reales
+</footer>
+
+</body>
+</html>
